@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PREY: THE ESCAPE — Android Horror Game | Made by Shiva</title>
+  <meta name="description" content="PREY: THE ESCAPE is a first-person horror game for Android. Wake up in a deserted night-time district, avoid what hunts you, solve locks and gates, and find your way out. Free APK download.">
+  <meta name="author" content="Shiva">
+  <meta name="theme-color" content="#07070a">
+  <link rel="canonical" href="./index.html">
+
+  <!-- Favicon / app icons (generated from the game's own icon) -->
+  <link rel="icon" href="favicon-64.png" sizes="64x64" type="image/png">
+  <link rel="icon" href="favicon-512.png" sizes="512x512" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PREY: THE ESCAPE">
+  <meta property="og:title" content="PREY: THE ESCAPE — You woke up in the wrong place. Now find your way out.">
+  <meta property="og:description" content="First-person horror on Android. Explore the dark, avoid the hunter, solve the locks, escape. Download the APK.">
+  <meta property="og:image" content="og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PREY: THE ESCAPE — Android Horror Game">
+  <meta name="twitter:description" content="You woke up in the wrong place. Now find your way out. Free Android APK.">
+  <meta name="twitter:image" content="og-cover.jpg">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "PREY: THE ESCAPE",
+    "gamePlatform": "Android",
+    "operatingSystem": "Android 7.0 (API 24) or newer, ARM64",
+    "applicationCategory": "GameApplication",
+    "genre": "Horror",
+    "author": { "@type": "Person", "name": "Shiva" },
+    "description": "First-person horror game for Android: explore a deserted night-district, avoid the hunter, solve locks and escape."
+  }
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ===================== TERMINAL INTRO (skippable) ===================== -->
+<div class="terminal" id="terminal" role="dialog" aria-modal="true" aria-label="Loading screen" hidden>
+  <div class="terminal__inner">
+    <pre class="terminal__text" id="terminalText" aria-live="polite"></pre>
+    <button class="terminal__skip" id="terminalSkip" type="button">SKIP INTRO &rsaquo;&rsaquo;</button>
+  </div>
+</div>
+
+<!-- ===================== DECORATIVE FX LAYERS ===================== -->
+<div class="fx" aria-hidden="true">
+  <div class="fx__fog fx__fog--1"></div>
+  <div class="fx__fog fx__fog--2"></div>
+  <div class="fx__grain"></div>
+  <div class="fx__scanlines"></div>
+  <div class="fx__vignette"></div>
+  <div class="fx__crt"></div>
+</div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" id="top">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="#top" aria-label="PREY: THE ESCAPE — home">
+      <img src="icon-192.png" alt="" width="36" height="36" decoding="async">
+      <span class="brand__text">PREY<span class="brand__colon">:</span> THE ESCAPE</span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#story">Story</a>
+      <a href="#features">Features</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#gameplay">Gameplay</a>
+      <a href="#download">Download</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="site-header__tools">
+      <button class="chip" id="fxToggle" type="button" aria-pressed="false" title="Toggle CRT / static effect">
+        <span class="chip__dot" aria-hidden="true"></span> CRT FX
+      </button>
+      <button class="chip" id="soundToggle" type="button" aria-pressed="false" title="Toggle ambient sound (never autoplays)">
+        <span class="chip__dot" aria-hidden="true"></span> SOUND
+      </button>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="hero__bg" role="presentation">
+      <img src="images/shots/level1.webp" alt="" width="1280" height="720" fetchpriority="high" decoding="async">
+    </div>
+    <div class="hero__shade" role="presentation"></div>
+
+    <div class="wrap hero__content">
+      <p class="eyebrow">
+        <span class="badge-android" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" focusable="false"><path fill="currentColor" d="M17.6 9.5H6.4v8.1c0 .7.6 1.3 1.3 1.3h.9v2.6c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-2.6h1.6v2.6c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-2.6h.9c.7 0 1.3-.6 1.3-1.3V9.5zM4.3 9.5c-.8 0-1.5.7-1.5 1.5v5c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-5c0-.8-.7-1.5-1.5-1.5zm15.4 0c-.8 0-1.5.7-1.5 1.5v5c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-5c0-.8-.7-1.5-1.5-1.5zM15.4 3l1.1-1.9c.1-.2 0-.4-.2-.5-.2-.1-.4 0-.5.2L14.6 3c-.9-.4-1.9-.6-3-.6s-2.1.2-3 .6L7.5.8c-.1-.2-.3-.3-.5-.2-.2.1-.3.3-.2.5L7.9 3C6.6 3.8 5.6 5 5.2 6.4h13.6C18.4 5 17.4 3.8 15.4 3zM9.3 5.1c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7zm5.4 0c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7z"/></svg>
+        </span>
+        ANDROID APK &middot; v1.0.0 &middot; OFFLINE
+      </p>
+
+      <h1 class="hero__title glitch" id="heroTitle" data-text="PREY: THE ESCAPE">PREY: THE ESCAPE</h1>
+
+      <p class="hero__tagline">You woke up in the wrong place. Now find your way out.</p>
+
+      <p class="hero__desc">
+        A first-person horror game set in a deserted night-time district. The streets are empty,
+        the lights are dying, and something is hunting. Search the alleys for keys, force open
+        the locks that block your way, and reach the exit before it finds you.
+      </p>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary btn--download" href="apk/PREY_THE_ESCAPE_v1.0.0.apk"
+           download="PREY_THE_ESCAPE_v1.0.0.apk" data-download>
+          <span class="btn__label">DOWNLOAD FOR ANDROID</span>
+          <span class="btn__meta">APK &middot; 40.6 MB</span>
+        </a>
+        <a class="btn btn--ghost" href="#story">ENTER THE NIGHT</a>
+        <a class="btn btn--quiet" href="#gameplay">EXPLORE THE GAME</a>
+      </div>
+
+      <p class="hero__spec">
+        <span class="pill">Android 7.0+ (API 24)</span>
+        <span class="pill">ARM64</span>
+        <span class="pill">Testing build</span>
+        <span class="pill">Outside Google Play</span>
+      </p>
+
+      <button class="fx-off-btn" id="fxOffBtn" type="button">Stop animations &amp; effects</button>
+    </div>
+
+    <a class="scroll-hint" href="#about" aria-label="Scroll to about section">
+      <span aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="section" id="about" aria-labelledby="aboutTitle">
+    <div class="wrap">
+      <p class="kicker">01 // About the game</p>
+      <h2 class="section__title" id="aboutTitle">A district that does not want you to leave</h2>
+
+      <div class="grid grid--2">
+        <div class="prose">
+          <p>
+            <strong>PREY: THE ESCAPE</strong> is a single-player, offline first-person horror game
+            for Android. You start with no weapon and no explanation — only a dark stretch of
+            streets, shuttered buildings and a way out that is firmly locked.
+          </p>
+          <p>
+            Progress means paying attention: where the light falls, where the patrols go, which
+            lock takes which key. Every level is a self-contained escape — cross it, and the game
+            remembers how far you got.
+          </p>
+          <p>
+            Everything runs on-device. No account, no connection, no ads — install the APK and play.
+          </p>
+        </div>
+
+        <ul class="fact-list" aria-label="Game facts">
+          <li><span>Genre</span><strong>First-person horror / stealth</strong></li>
+          <li><span>Platform</span><strong>Android (APK, sideload)</strong></li>
+          <li><span>Modes</span><strong>Single-player, offline</strong></li>
+          <li><span>Content</span><strong>Intro crawl + 4 levels</strong></li>
+          <li><span>Controls</span><strong>Touch joystick + on-screen buttons</strong></li>
+          <li><span>Engine</span><strong>Unity 2021.1 &middot; ARM64</strong></li>
+          <li><span>Progress</span><strong>Saved — CONTINUE from the menu</strong></li>
+          <li><span>Price</span><strong>Free download</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STORY ===================== -->
+  <section class="section section--story" id="story" aria-labelledby="storyTitle">
+    <div class="wrap">
+      <p class="kicker">02 // Story</p>
+      <h2 class="section__title" id="storyTitle">You woke up in the wrong place.</h2>
+
+      <div class="story-card">
+        <p class="story-card__lead">
+          Cold concrete. A lamp that buzzes and dies. No voices, no traffic — only your own
+          footsteps answering themselves down the alley.
+        </p>
+        <p>
+          The district is a maze of service lanes, fences and gated passages. Some gates open
+          with a turn; others want a key you have not found yet, and at least one wants two.
+          Somewhere behind you, something has started to move.
+        </p>
+        <p>
+          The game opens with its text crawl, then hands you the street. From there the story is
+          told by what you find: the locks that were shut from the inside, the routes that were
+          blocked on purpose, and the exit that keeps getting further away.
+        </p>
+        <p class="story-card__final">Find the keys. Open the gates. Get out.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURES ===================== -->
+  <section class="section" id="features" aria-labelledby="featuresTitle">
+    <div class="wrap">
+      <p class="kicker">03 // Features</p>
+      <h2 class="section__title" id="featuresTitle">What is actually in the game</h2>
+      <p class="section__sub">Every item below is present in the shipped build — no promises, no placeholders.</p>
+
+      <ul class="features">
+        <li class="feature">
+          <span class="feature__ico" aria-hidden="true">◉</span>
+          <h3>Dark, explorable streets</h3>
+          <p>Four hand-built levels of alleys, yards and interiors, lit only by failing lamps and your flashlight.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__ico" aria-hidden="true">◎</span>
+          <h3>Something is hunting you</h3>
+          <p>An enemy patrols each level, spots you on sight and gives chase. Break line of sight, crouch, and wait.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__ico" aria-hidden="true">⚿</span>
+          <h3>Keys, locks and gates</h3>
+          <p>Locked gates and a two-key electrical panel block the route out. Find the matching keys to progress.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__ico" aria-hidden="true">▤</span>
+          <h3>Inventory &amp; items</h3>
+          <p>Collect and use what you find: medkit, bandage, flashlight, candle, bat and map all have a purpose.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__ico" aria-hidden="true">⇡</span>
+          <h3>Crouch &amp; sprint</h3>
+          <p>A run meter rewards short bursts of speed; crouching keeps you quiet and under cover.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__ico" aria-hidden="true">▣</span>
+          <h3>Pause settings</h3>
+          <p>Music and SFX volume, mouse/touch sensitivity, brightness, graphics presets (Low/Med/High) and an optional CRT TV effect.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__ico" aria-hidden="true">✚</span>
+          <h3>Checkpoints of progress</h3>
+          <p>Beaten a level? The menu CONTINUE button drops you back at your furthest point.</p>
+        </li>
+        <li class="feature">
+          <span class="feature__ico" aria-hidden="true">✦</span>
+          <h3>Built for touch</h3>
+          <p>Virtual joystick, drag-look and on-screen buttons for interact, jump, crouch, sprint, inventory and pause. Hardware back button supported.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== SCREENSHOTS ===================== -->
+  <section class="section section--shots" id="screenshots" aria-labelledby="shotsTitle">
+    <div class="wrap">
+      <p class="kicker">04 // Screenshots</p>
+      <h2 class="section__title" id="shotsTitle">Captured from the game itself</h2>
+      <p class="section__sub">Every image below is rendered from the shipped game scenes — not concept art, not mockups. Click any shot to enlarge.</p>
+
+      <div class="gallery" id="gallery">
+        <button class="shot" type="button" data-full="images/shots/menu.webp"
+                data-caption="Main menu backdrop — the district at night." data-index="0">
+          <img src="images/shots/menu.webp" alt="In-game capture: dark street intersection lit by sparse lamps" width="1280" height="720" loading="lazy" decoding="async">
+          <span class="shot__cap">Main menu</span>
+        </button>
+        <button class="shot" type="button" data-full="images/shots/level1.webp"
+                data-caption="Level 1 — a service alley with bins, cones and one working lamp." data-index="1">
+          <img src="images/shots/level1.webp" alt="In-game capture: narrow brick alley at night with a lamppost and bins" width="1280" height="720" loading="lazy" decoding="async">
+          <span class="shot__cap">Level 1</span>
+        </button>
+        <button class="shot" type="button" data-full="images/shots/level2.webp"
+                data-caption="Level 2 — deeper into the district." data-index="2">
+          <img src="images/shots/level2.webp" alt="In-game capture: level 2 environment at night" width="1280" height="720" loading="lazy" decoding="async">
+          <span class="shot__cap">Level 2</span>
+        </button>
+        <button class="shot" type="button" data-full="images/shots/level3.webp"
+                data-caption="Level 3 — gates, fences and long sightlines." data-index="3">
+          <img src="images/shots/level3.webp" alt="In-game capture: level 3 environment at night" width="1280" height="720" loading="lazy" decoding="async">
+          <span class="shot__cap">Level 3</span>
+        </button>
+        <button class="shot" type="button" data-full="images/shots/level4.webp"
+                data-caption="Level 4 — the in-game interaction prompt, straight from the HUD." data-index="4">
+          <img src="images/shots/level4.webp" alt="In-game capture: first-person street view showing the interaction prompt" width="1280" height="720" loading="lazy" decoding="async">
+          <span class="shot__cap">Level 4</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GAMEPLAY ===================== -->
+  <section class="section" id="gameplay" aria-labelledby="gameplayTitle">
+    <div class="wrap">
+      <p class="kicker">05 // Gameplay</p>
+      <h2 class="section__title" id="gameplayTitle">How a night here plays out</h2>
+
+      <div class="grid grid--2 grid--align">
+        <div class="prose">
+          <p>
+            You move in first person with a left-thumb joystick and drag anywhere on the right to
+            look. Interact, jump, crouch, sprint, inventory and pause sit within reach of both
+            thumbs.
+          </p>
+          <p>
+            The loop is simple and tense: <strong>listen, watch, move.</strong> Patrols give away
+            their position; darkness hides you but hides the path too. When a route is barred you
+            are hunting for the key that matches it — sometimes two keys for one panel.
+          </p>
+          <p>
+            Getting caught sends you back to the start of the level. Reaching the exit moves the
+            story forward and stores your progress.
+          </p>
+          <p class="prose__note">
+            Tuned for short sessions on a phone: levels are compact, the interface is touch-first,
+            and graphics presets let older devices keep up.
+          </p>
+        </div>
+
+        <figure class="media">
+          <img src="images/shots/level4.webp" alt="First-person view of a dark street with the interaction prompt visible" width="1280" height="720" loading="lazy" decoding="async">
+          <figcaption>Real in-game HUD — the prompt you will see most.</figcaption>
+        </figure>
+      </div>
+
+      <ol class="loop" aria-label="Gameplay loop">
+        <li><span>01</span>Explore the dark</li>
+        <li><span>02</span>Stay out of sight</li>
+        <li><span>03</span>Find the keys</li>
+        <li><span>04</span>Open the gates</li>
+        <li><span>05</span>Escape</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== CAN YOU ESCAPE ===================== -->
+  <section class="section section--escape" id="escape" aria-labelledby="escapeTitle">
+    <div class="wrap escape">
+      <div class="escape__text">
+        <p class="kicker">06 // The question</p>
+        <h2 class="section__title section__title--big glitch" id="escapeTitle" data-text="CAN YOU ESCAPE?">CAN YOU ESCAPE?</h2>
+        <p class="escape__sub">Four locked levels. One way out. No map until you find it.</p>
+        <a class="btn btn--primary btn--download" href="apk/PREY_THE_ESCAPE_v1.0.0.apk"
+           download="PREY_THE_ESCAPE_v1.0.0.apk" data-download>
+          <span class="btn__label">DOWNLOAD FOR ANDROID</span>
+          <span class="btn__meta">APK &middot; 40.6 MB</span>
+        </a>
+      </div>
+      <figure class="escape__media">
+        <img src="images/shots/level3.webp" alt="In-game capture of a level environment at night" width="1280" height="720" loading="lazy" decoding="async">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== DOWNLOAD ===================== -->
+  <section class="section" id="download" aria-labelledby="downloadTitle">
+    <div class="wrap">
+      <p class="kicker">07 // Download</p>
+      <h2 class="section__title" id="downloadTitle">Get the APK</h2>
+
+      <div class="grid grid--2 grid--align">
+        <div class="dl-panel">
+          <div class="dl-panel__head">
+            <img src="apk-icon.png" alt="PREY: THE ESCAPE app icon" width="64" height="64" loading="lazy" decoding="async">
+            <div>
+              <h3>PREY: THE ESCAPE</h3>
+              <p class="dl-panel__file">PREY_THE_ESCAPE_v1.0.0.apk</p>
+            </div>
+          </div>
+
+          <table class="spec">
+            <caption class="visually-hidden">APK technical details</caption>
+            <tbody>
+              <tr><th scope="row">Version</th><td>1.0.0 (version code 1)</td></tr>
+              <tr><th scope="row">File size</th><td>40.6 MB (42,557,183 bytes)</td></tr>
+              <tr><th scope="row">Minimum Android</th><td>Android 7.0 — API 24 or newer</td></tr>
+              <tr><th scope="row">Architecture</th><td>ARM64 (arm64-v8a) only</td></tr>
+              <tr><th scope="row">Package</th><td>com.shiva.preytheescape</td></tr>
+              <tr><th scope="row">Distribution</th><td>Direct APK — <strong>outside Google Play</strong></td></tr>
+              <tr><th scope="row">Signing</th><td><span class="tag tag--warn">Debug-signed</span> testing build</td></tr>
+              <tr><th scope="row">Target API</th><td><span class="tag tag--warn">API 30</span> — outdated for Play Store</td></tr>
+            </tbody>
+          </table>
+
+          <a class="btn btn--primary btn--block btn--download" href="apk/PREY_THE_ESCAPE_v1.0.0.apk"
+             download="PREY_THE_ESCAPE_v1.0.0.apk" data-download>
+            <span class="btn__label">DOWNLOAD APK — 40.6 MB</span>
+            <span class="btn__meta">v1.0.0 &middot; ARM64 &middot; Android 7.0+</span>
+          </a>
+
+          <p class="dl-panel__note">
+            <strong>This is a testing build.</strong> The APK is debug-signed and targets Android
+            API 30, so it is not Play-Store certified and not a production release. It installs and
+            runs as a sideloaded app; treat it as a work in progress.
+          </p>
+        </div>
+
+        <div class="install">
+          <h3 class="install__title">How to install</h3>
+          <ol class="install__steps">
+            <li>
+              <strong>Download the APK</strong>
+              <span>Tap the download button. Your browser will save <code>PREY_THE_ESCAPE_v1.0.0.apk</code> (40.6 MB).</span>
+            </li>
+            <li>
+              <strong>Open the file</strong>
+              <span>Open it from your notification shade or your Downloads folder using any file manager.</span>
+            </li>
+            <li>
+              <strong>Allow the source, if asked</strong>
+              <span>Android will warn that the app is from outside Google Play. Tap <em>Settings</em>, enable <em>Allow from this source</em>, then go back.</span>
+            </li>
+            <li>
+              <strong>Tap Install</strong>
+              <span>Once installed, launch <em>PREY: THE ESCAPE</em> from your home screen and allow storage/audio permissions if prompted.</span>
+            </li>
+          </ol>
+
+          <div class="notice">
+            <strong>Distributed outside Google Play.</strong>
+            This APK is not published on Google Play and is not Play-certified. Only download it
+            from a site you trust, and uninstall it if you no longer want it.
+          </div>
+
+          <p class="install__checksum">
+            SHA-256 (source build): <code>ccc150db6aa5bbff…</code>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="section" id="faq" aria-labelledby="faqTitle">
+    <div class="wrap wrap--narrow">
+      <p class="kicker">08 // FAQ</p>
+      <h2 class="section__title" id="faqTitle">Questions in the dark</h2>
+
+      <div class="faq" id="faqList">
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq1" id="faq1btn">Is the game free?<span class="faq__ico" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="faq1" role="region" aria-labelledby="faq1btn" hidden>
+            <p>Yes. The APK on this page is a free download. There are no in-app purchases and no ads.</p>
+          </div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq2" id="faq2btn">Do I need an internet connection?<span class="faq__ico" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="faq2" role="region" aria-labelledby="faq2btn" hidden>
+            <p>No. The game runs entirely offline on your device. No account, no login, no always-online check.</p>
+          </div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq3" id="faq3btn">Which phones are supported?<span class="faq__ico" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="faq3" role="region" aria-labelledby="faq3btn" hidden>
+            <p>
+              The build targets Android 7.0 (API 24) or newer and contains <strong>ARM64</strong>
+              binaries only, which covers essentially every phone sold in the last several years.
+              It has not been tested on every device, so if it misbehaves on yours, please report
+              it using the contact link below.
+            </p>
+          </div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq4" id="faq4btn">Is this build finished?<span class="faq__ico" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="faq4" role="region" aria-labelledby="faq4btn" hidden>
+            <p>
+              No — it is a <strong>testing build</strong>. It is debug-signed and targets Android
+              API 30, which is below current Google Play requirements. It is meant for direct
+              sideloading while development continues, not as a production release.
+            </p>
+          </div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq5" id="faq5btn">Will my progress be saved?<span class="faq__ico" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="faq5" role="region" aria-labelledby="faq5btn" hidden>
+            <p>Yes. Each level you clear is remembered, and the CONTINUE button on the main menu takes you back to your furthest point.</p>
+          </div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq6" id="faq6btn">Does the website play sound?<span class="faq__ico" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="faq6" role="region" aria-labelledby="faq6btn" hidden>
+            <p>
+              Never on its own. Ambient sound is off by default and only starts if you switch the
+              <strong>SOUND</strong> toggle on yourself. Heavy visual effects are off by default
+              too — use the CRT FX toggle or the “stop animations” button if you prefer them off.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="section section--contact" id="contact" aria-labelledby="contactTitle">
+    <div class="wrap wrap--narrow">
+      <p class="kicker">09 // Contact</p>
+      <h2 class="section__title" id="contactTitle">Contact us</h2>
+      <p class="section__sub">Questions, feedback, device problems — all welcome.</p>
+
+      <div class="contact-card">
+        <ul class="contact-list">
+          <li>
+            <span class="contact-list__label">Email</span>
+            <a class="contact-list__value" href="mailto:webloom.in00@gmail.com">webloom.in00@gmail.com</a>
+          </li>
+          <li>
+            <span class="contact-list__label">Phone</span>
+            <a class="contact-list__value" href="tel:+919815360481">+91 98153 60481</a>
+          </li>
+        </ul>
+
+        <div class="contact-actions">
+          <a class="btn btn--primary" href="mailto:webloom.in00@gmail.com?subject=PREY%3A%20THE%20ESCAPE%20%E2%80%94%20Contact">WRITE AN EMAIL</a>
+          <a class="btn btn--ghost" href="tel:+919815360481">CALL +91 98153 60481</a>
+          <a class="btn btn--quiet" href="mailto:webloom.in00@gmail.com?subject=PREY%3A%20THE%20ESCAPE%20%E2%80%94%20Problem%20report&amp;body=Device%3A%0AAndroid%20version%3A%0AWhat%20happened%3A%0ASteps%20to%20reproduce%3A">REPORT A PROBLEM</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CLOSING CTA ===================== -->
+  <section class="section section--final" aria-labelledby="finalTitle">
+    <div class="wrap final">
+      <div class="final__flicker" aria-hidden="true"></div>
+      <h2 class="final__title" id="finalTitle">The door is still open.<br>For now.</h2>
+      <a class="btn btn--primary btn--lg btn--download" href="apk/PREY_THE_ESCAPE_v1.0.0.apk"
+         download="PREY_THE_ESCAPE_v1.0.0.apk" data-download>
+        <span class="btn__label">DOWNLOAD FOR ANDROID</span>
+        <span class="btn__meta">Free APK &middot; 40.6 MB</span>
+      </a>
+      <p class="final__meta">Android 7.0+ &middot; ARM64 &middot; Outside Google Play &middot; Testing build</p>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__brand">
+      <strong>PREY: THE ESCAPE</strong>
+      <span>First-person horror for Android</span>
+    </div>
+    <nav class="site-footer__nav" aria-label="Footer">
+      <a href="#about">About</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#download">Download</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="404.html">404</a>
+    </nav>
+    <div class="site-footer__legal">
+      <a href="mailto:webloom.in00@gmail.com">webloom.in00@gmail.com</a>
+      <span aria-hidden="true">·</span>
+      <a href="tel:+919815360481">+91 98153 60481</a>
+    </div>
+    <p class="site-footer__made">MADE BY SHIVA</p>
+    <p class="site-footer__disclaimer">
+      Not affiliated with Google. Not published on Google Play. All imagery on this page is
+      captured from the game itself.
+    </p>
+  </div>
+</footer>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer" hidden>
+  <div class="lightbox__backdrop" data-close></div>
+  <figure class="lightbox__figure">
+    <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    <figcaption class="lightbox__cap" id="lightboxCap"></figcaption>
+  </figure>
+  <button class="lightbox__btn lightbox__btn--prev" id="lbPrev" type="button" aria-label="Previous screenshot">&#10094;</button>
+  <button class="lightbox__btn lightbox__btn--next" id="lbNext" type="button" aria-label="Next screenshot">&#10095;</button>
+  <button class="lightbox__btn lightbox__btn--close" id="lbClose" type="button" aria-label="Close viewer">&#10005;</button>
+</div>
+
+<!-- ===================== MOBILE NAV SCRIM ===================== -->
+<div class="nav-scrim" id="navScrim" hidden></div>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
