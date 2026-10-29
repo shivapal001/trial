@@ -1,0 +1,24 @@
+{
+  "name": "PREY: THE ESCAPE",
+  "short_name": "PREY",
+  "description": "First-person horror game for Android. Explore a deserted night-time district, avoid the hunter, solve the locks and find your way out.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "landscape",
+  "lang": "en",
+  "theme_color": "#07070a",
+  "background_color": "#07070a",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "prey-the-escape-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Official landing page for PREY: THE ESCAPE - an Android horror game by Shiva.",
+  "type": "module",
+  "scripts": {
+    "start": "npx --yes serve@14 public -l 4173",
+    "serve": "python -m http.server 4173 --directory public",
+    "sync-apk": "node scripts/sync-apk.mjs",
+    "validate": "node scripts/validate.mjs",
+    "lint": "node scripts/validate.mjs",
+    "check": "node scripts/validate.mjs",
+    "icons": "node scripts/generate-site-icons.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
